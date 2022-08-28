@@ -38,42 +38,25 @@ class TextField {
 }
 
 class Buttons {
-    func buttonSave()-> UIButton{
+    
+    var buttonSave : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
         button.tintColor = .systemBlue
         return button
-    }
-//    var buttonSave : UIButton {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Save", for: .normal)
-//        button.tintColor = .systemBlue
-//        return button
-func buttonCancel()-> UIButton{
-    let button = UIButton(type: .system)
-    button.setTitle("Cancel", for: .normal)
-    button.tintColor = .systemBlue
-    return button
-}
-//    var buttonCancel : UIButton {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Cancel", for: .normal)
-//        button.tintColor = .systemBlue
-//        return button
-//    }
-    func buttonClear ()->UIButton{
+    }()
+    var buttonCancel : UIButton  = {
+        let button = UIButton(type: .system)
+        button.setTitle("Cancel", for: .normal)
+        button.tintColor = .systemBlue
+        return button
+    }()
+    var buttonClear : UIButton  = {
         let button = UIButton(type: .system)
         button.setTitle("Clear", for: .normal)
         button.tintColor = .systemBlue
         return button
-    }
-//    var buttonClear : UIButton {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Clear", for: .normal)
-//        button.tintColor = .systemBlue
-//        return button
-//    }
-   
+    }()
     }
 
 class ViewController: UIViewController,TextFieldDelegate {
@@ -107,9 +90,9 @@ class ViewController: UIViewController,TextFieldDelegate {
         stackOfLabel.distribution = .fillEqually
         stackOfLabel.alignment = .fill
         
-        stackOfButtons.addArrangedSubview(buttons.buttonSave())
-        stackOfButtons.addArrangedSubview(buttons.buttonClear())
-        stackOfButtons.addArrangedSubview(buttons.buttonCancel())
+        stackOfButtons.addArrangedSubview(buttons.buttonSave)
+        stackOfButtons.addArrangedSubview(buttons.buttonClear)
+        stackOfButtons.addArrangedSubview(buttons.buttonCancel)
         
         stackOfButtons.axis = .horizontal
         stackOfButtons.spacing = 55
@@ -151,9 +134,9 @@ class ViewController: UIViewController,TextFieldDelegate {
         setUpForLabel()
         setUpImage()
         
-        buttons.buttonClear().addTarget(self, action: #selector(buttonTouchClear), for: .touchUpInside)
-        buttons.buttonSave().addTarget(self, action: #selector(buttonTouchSave(info:)), for: .touchUpInside)
-        buttons.buttonCancel().addTarget(self, action: #selector(buttonTouchCancel), for: .touchUpInside)
+        buttons.buttonClear.addTarget(self, action: #selector(buttonTouchClear), for: .touchUpInside)
+        buttons.buttonSave.addTarget(self, action: #selector(buttonTouchSave(info:)), for: .touchUpInside)
+        buttons.buttonCancel.addTarget(self, action: #selector(buttonTouchCancel), for: .touchUpInside)
 
     }
     func setUpTextField (){
@@ -163,7 +146,6 @@ class ViewController: UIViewController,TextFieldDelegate {
         _ = stackOfTextField.bottomAnchor.constraint(equalTo: bigView.topAnchor, constant: -25).isActive = true
         _ = stackOfTextField.widthAnchor.constraint(equalToConstant: 155).isActive = true
         _ = stackOfTextField.heightAnchor.constraint(equalToConstant: 120).isActive = true
-
     }
     func setUpBigView (){
         _ = bigView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
